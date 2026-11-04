@@ -13,15 +13,21 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - name: Install SDK pieces
+          
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        
+      - name: Install NDK and CMake
         run: |
-          yes | sdkmanager --licenses >/dev/null || true
-          sdkmanager --install "platforms;android-34" "build-tools;34.0.0" "ndk;26.1.10909125" "cmake;3.22.1"
+          sdkmanager --install "ndk;26.1.10909125" "cmake;3.22.1"
+          
       - uses: gradle/actions/setup-gradle@v3
         with:
           gradle-version: '8.7'
+          
       - name: Build debug apk
         run: gradle :app:assembleDebug --no-daemon --stacktrace
+        
       - uses: actions/upload-artifact@v4
         with:
           name: oxesp-debug
