@@ -20,7 +20,7 @@ class EspService : Service() {
     companion object {
         private const val TAG = "OxEsp"
         private const val CH = "oxesp"
-        private const val GAME_PKG = "com.oxidesurvivalisland"
+        private const val GAME_PKG = "com.catsbit.oxidesurvivalisland"
         private const val TICK_MS = 8L
     }
 
